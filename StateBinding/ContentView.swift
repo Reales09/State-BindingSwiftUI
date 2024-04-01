@@ -52,11 +52,34 @@ struct ContentView: View {
                 Text(String(numeroMoneda)).bold()
 
             }
-            TextField("Titulo", text: $numeroMoneda2)
+            TextField("Donación", text: $numeroMoneda2)
                 .keyboardType(.numberPad)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            TextField("Titulo", text: $x)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+            vista2(x: $x)
+            vista3(x: $x)
            
         }
-        .padding()
+        .padding(.all)
+    }
+}
+
+struct vista2: View {
+    @Binding var x : String
+    var body: some View{
+        Text(x).font(.largeTitle).foregroundColor(.red)
+    }
+}
+
+struct vista3: View {
+    @Binding var x : String
+    var body: some View{
+        Button(action: {
+            x = "Nuevo titulo desde vista3"
+        }, label: {
+            Text("Cambiar titulo")
+        })
     }
 }
 

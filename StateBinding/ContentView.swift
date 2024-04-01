@@ -8,10 +8,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var  x = ""
+    //Binding: es la conexión entre una propiedad que almacena datos(variable) y una vista que cambia el valor ejemplo (Textfield)
+    
+    
+    @State var  x = "Titulo"
     var x1 = 2
     @State private var show = true
     @State private var numero = 0
+    @State private var numeroMoneda = 123
+    @State private var numeroMoneda2 = "0"
+
     
     func suma() ->Int{
         x = "Cambiando su valor" // variable viene de fuera se usa state
@@ -21,6 +27,7 @@ struct ContentView: View {
     }
     var body: some View {
         VStack {
+            Text(x).font(.largeTitle)
             HStack{
                 Button(action: {
                     show.toggle()
@@ -37,8 +44,16 @@ struct ContentView: View {
                     }
                     Text(String(numero)).bold()
                 }
+                Button(action: {
+                    numeroMoneda = numeroMoneda + Int(numeroMoneda2)!
+                }){
+                    Image(systemName: "dollarsign.circle.fill").foregroundColor(.yellow).font(.largeTitle)
+                }
+                Text(String(numeroMoneda)).bold()
 
             }
+            TextField("Titulo", text: $numeroMoneda2)
+                .keyboardType(.numberPad)
            
         }
         .padding()

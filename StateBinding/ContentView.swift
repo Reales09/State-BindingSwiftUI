@@ -10,6 +10,8 @@ import SwiftUI
 struct ContentView: View {
     @State var  x = ""
     var x1 = 2
+    @State private var show = true
+    @State private var numero = 0
     
     func suma() ->Int{
         x = "Cambiando su valor" // variable viene de fuera se usa state
@@ -19,10 +21,25 @@ struct ContentView: View {
     }
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            HStack{
+                Button(action: {
+                    show.toggle()
+                    if show {
+                        numero -= 1
+                    }else{
+                        numero += 1
+                    }
+                }){
+                    if show {
+                        Image(systemName: "heart").foregroundColor(.red).font(.largeTitle)
+                    }else{
+                        Image(systemName: "heart.fill").foregroundColor(.red).font(.largeTitle)
+                    }
+                    Text(String(numero)).bold()
+                }
+
+            }
+           
         }
         .padding()
     }
